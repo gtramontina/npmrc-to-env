@@ -1,0 +1,7 @@
+{
+  "email": "NPM_EMAIL",
+  "username": "NPM_USERNAME",
+  "_password": "NPM_PASSWORD",
+  "_authToken": "NPM_TOKEN",
+  "always-auth": "NPM_ALWAYS_AUTH"
+}

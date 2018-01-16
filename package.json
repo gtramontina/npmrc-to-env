@@ -1,0 +1,76 @@
+{
+  "name": "npmrc-to-env",
+  "version": "0.0.0-development",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "bin": {
+    "npmrc-to-env": "bin/npmrc-to-env.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gtramontina/npmrc-to-env.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint '{lib,bin}/**/*.js'",
+    "prerelease": "yarn lint && yarn test",
+    "release": "semantic-release",
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "precommit": "lint-staged"
+  },
+  "dependencies": {
+    "get-stdin": "5.0.1",
+    "meow": "4.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "6.0.2",
+    "commitlint": "6.0.2",
+    "dedent": "0.7.0",
+    "eslint": "4.15.0",
+    "husky": "0.14.3",
+    "jest": "22.1.1",
+    "lint-staged": "6.0.0",
+    "prettier-eslint-cli": "4.7.0",
+    "semantic-release": "12.2.2",
+    "temp-write": "3.4.0"
+  },
+  "eslintConfig": {
+    "env": { "node": true },
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
+    },
+
+    "rules": {
+      "complexity": ["error", 2],
+      "no-unused-vars": ["error", { "args": "all", "argsIgnorePattern": "^_" }]
+    },
+
+    "overrides": [
+      {
+        "files": ["**/*.spec.js"],
+        "env": { "es6": true, "jest": true }
+      }
+    ]
+  },
+  "commitlint": {
+    "extends": ["@commitlint/config-conventional"]
+  },
+  "lint-staged": {
+    "*.js": ["prettier-eslint --write", "git add"]
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": ["lib/**/*.js"],
+    "cacheDirectory": ".tmp",
+    "roots": ["lib", "bin"],
+    "verbose": true
+  },
+  "renovate": {
+    "automerge": true,
+    "extends": ["config:base"]
+  }
+}

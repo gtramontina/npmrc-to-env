@@ -1,0 +1,6 @@
+.*
+*.log
+*.lock
+*.spec.js
+Makefile
+coverage/
